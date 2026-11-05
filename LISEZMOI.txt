@@ -1,0 +1,11 @@
+Route Dofus à 4 comptes : appli installable (PWA)
+
+1. Héberge ce dossier (gratuit) :
+   - Netlify Drop : va sur app.netlify.com/drop et glisse le dossier.
+   - ou GitHub Pages : mets les fichiers dans un dépôt et active Pages.
+2. Ouvre l’adresse obtenue sur ton PC ou ton téléphone.
+3. Installe : menu du navigateur > « Installer l’application » (Chrome, Edge)
+   ou Partager > « Sur l’écran d’accueil » (iPhone).
+
+Sauvegarde : section « Sauvegarde » de l’appli (fichier ou code à copier-coller).
+La progression est enregistrée par appareil et par adresse : si tu changes d’adresse, exporte avant.

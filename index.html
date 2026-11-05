@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Route Dofus à 4 comptes</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d1718">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dofus 4">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f1;--card:#fff;--ink:#16212b;--mute:#586873;--line:#d3ddd9;--bar:#1f9d6b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1718;--card:#15262a;--ink:#e8f0ee;--mute:#9bb0ac;--line:#26403f;--bar:#36c28c}}
+:root[data-theme="dark"]{--bg:#0d1718;--card:#15262a;--ink:#e8f0ee;--mute:#9bb0ac;--line:#26403f;--bar:#36c28c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.15}
+main{max-width:780px;margin:0 auto;padding:28px 16px 56px}
+h1{font-size:clamp(30px,6vw,44px);font-weight:800}
+.sub{color:var(--mute);margin:8px 0 20px}
+.total{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.total b{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:22px}
+.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:0;background:var(--bar);transition:width .3s}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.team div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.team b{display:block;font-family:"Bricolage Grotesque",system-ui,sans-serif}
+.team span{font-size:13px;color:var(--mute)}
+.tips{background:var(--card);border-left:5px solid #e0a02e;border-radius:6px 14px 14px 6px;padding:12px 16px;margin:0 0 28px}
+.tips h2{font-size:18px;margin-bottom:6px}
+.tips ul{margin:0;padding-left:18px}
+.tips li{margin:3px 0}
+.route{position:relative;padding-left:0}
+.phase{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 12px;overflow:hidden}
+summary{display:flex;align-items:center;gap:14px;padding:12px 16px;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible,.chip:focus-within{outline:3px solid var(--bar);outline-offset:-3px}
+.egg{flex:none;width:36px;height:46px;border:3px solid var(--c);border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:linear-gradient(to top,var(--c) var(--p,0%),transparent var(--p,0%));transition:background .3s}
+.lv{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:24px;line-height:1}
+.nm{color:var(--mute);font-size:14px}
+.cnt{margin-left:auto;font-weight:600;font-size:14px;color:var(--mute)}
+.phase ul{list-style:none;margin:0;padding:4px 16px 14px}
+.phase li{border-top:1px solid var(--line)}
+label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;cursor:pointer}
+input[type=checkbox]{flex:none;width:20px;height:20px;margin-top:2px;accent-color:var(--c,var(--bar))}
+input:checked+span{color:var(--mute);text-decoration:line-through}
+h2.sec{font-size:22px;margin:30px 0 4px}
+.hint{color:var(--mute);margin:0 0 12px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 14px 6px 10px;cursor:pointer}
+.chip i{width:14px;height:18px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:var(--c);border:2px solid var(--c)}
+.chip small{color:var(--mute)}
+.chip input{display:none}
+.chip:has(input:checked){background:var(--c);color:#111;border-color:var(--c)}
+.chip:has(input:checked) small{color:#222}
+.chip:has(input:checked) i{background:#fff;border-color:#fff}
+button{font:inherit;margin-top:28px;background:none;border:1px solid var(--line);color:var(--mute);border-radius:99px;padding:6px 16px;cursor:pointer}
+.bk{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.bk .row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px}
+.bk button{margin:0;color:var(--ink)}
+#bkinfo,#bkmsg{font-size:14px;color:var(--mute);margin:4px 0 0}
+@media (max-width:520px){.team{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<main>
+<h1>Route Dofus à 4 comptes</h1>
+<p class="sub">De 0 à 200 : quêtes, donjons, succès et Dofus dans le bon ordre. Coche au fil du jeu, ta progression reste sur cet appareil.</p>
+
+<div class="total"><b id="tot">0 %</b> <span class="nm">de la route terminée</span><div class="bar"><i id="totbar"></i></div></div>
+
+<div class="team">
+<div><b>Forgelance</b><span>Dégâts</span></div>
+<div><b>Pandawa</b><span>Portage, contrôle</span></div>
+<div><b>Féca</b><span>Armures</span></div>
+<div><b>Enutrof</b><span>Butin</span></div>
+</div>
+
+<div class="tips">
+<h2>Réflexes à 4 comptes</h2>
+<ul>
+<li>Garde les 4 persos sur la même étape de quête.</li>
+<li>Challenges en bonus d’XP : vise des groupes de 5 monstres ou plus.</li>
+<li>Après un gros donjon, utilise le trousseau pour te sauver devant le boss suivant.</li>
+<li>Almanax chaque jour sur les 4 comptes (Dolmanax au bout de 365).</li>
+<li>Événements : Halouine jusqu’au 10 novembre, Nowel du 1er décembre au 5 janvier.</li>
+</ul>
+</div>
+
+<div class="route" id="route"></div>
+
+<h2 class="sec">Dofus à débloquer</h2>
+<p class="hint">Clique sur un Dofus quand il est obtenu sur les 4 persos.</p>
+<div class="chips" id="dofus"></div>
+
+<h2 class="sec">Sauvegarde</h2>
+<div class="bk">
+<p class="hint" style="margin:0">Pense à sauvegarder de temps en temps. Le code permet de passer d’un appareil à l’autre.</p>
+<div class="row">
+<button id="bkexp" type="button">Exporter un fichier</button>
+<button id="bkimp" type="button">Importer un fichier</button>
+<button id="bkcopy" type="button">Copier mon code</button>
+<button id="bkpaste" type="button">Coller un code</button>
+</div>
+<input id="bkfile" type="file" accept="application/json,.json" hidden>
+<p id="bkinfo"></p><p id="bkmsg" role="status"></p>
+</div>
+<button id="reset" type="button">Tout remettre à zéro</button>
+</main>
+
+<script>
+var PH=[
+{id:"a",lv:"1–20",t:"Les Pious et le Kardorim",c:"#8fa3b8",it:["Tutoriel sur les 4 comptes (niveau 2 et trousseau)","Passage direct à Astrub, sans Incarnam","Panoplie Piou (équipable niveau 12)","Donjon Crypte du Kardorim, tous les succès (niveau 20)"]},
+{id:"b",lv:"20–50",t:"Tour du monde, début",c:"#2ea36b",it:["Quêtes « Un citoyen modèle » (prérequis des Dofus)","Tournesol Affamé, Château Ensablé, Bouftou","Squelettes, Tofus, Maison Fantôme","Baguette Rikiki au niveau 40, puis Kankreblath","Scarafeuilles, Forgerons, Akadémie des Gobs, Bworks","« Destination aventure » (Kwakwa, Kanniboul)","Dofus Argenté (quêtes d’Astrub, niveau 40)","Panoplie Blop et familier Pioute"]},
+{id:"c",lv:"50–90",t:"Dofus Cawotte",c:"#e0a02e",it:["Larves (2 persos minimum) et Nid du Kwakwa","Accès à Otomaï, puis Grotte Hesque","Clos des Blops, avec sauvegarde au Blop Multicolore","Île de Moon et Village Kanniboul","Panoplie du Wa Wabbit (une seule pour les 4)","Terrier du Wa Wabbit : Dofus Cawotte sur chaque perso","Gelax, Draegnerys, Pitons, Arche d’Otomaï, Brumen","Cimetière des Mastodontes (Saharach)","Avis de recherche dès le niveau 60"]},
+{id:"d",lv:"90–110",t:"La tranche difficile",c:"#9b4bd0",it:["Chouque, Riktus, Reine Nyée, Domaine Ancestral, Dragon Cochon, Kharnozor","Koulosse, Dramak, Moon, Meulou (sans les succès du Meulou)","Dokoko au niveau 100","Trophées Remueur (+1 PA) et Nomade (+1 PM)","Rat Blanc, Rasboul, Rat Noir, Maître Corbac (niveau 110)","Lancer les quêtes des Dofus Pourpre et Émeraude"]},
+{id:"e",lv:"110–150",t:"Frigost et Pandala",c:"#19a7c8",it:["Serre du Royalmouth (Frigost)","Minotoror, avec sauvegarde devant le Minotot","Blop Multicolore Royal et ses 4 succès","Pandala 1 : Damadrya, Tanukouï San, Dame des Eaux, Foux d’artifices, Dojo du Vent","Tofulailler, Crocabulia, Skeunk (Dofus Kaliptus)","Tynril : il faut taper dans les 4 éléments","Mansot Royal, El Piko, Haute Truche, Chêne Mou","Améliorer le stuff vers 120–140"]},
+{id:"f",lv:"150–190",t:"Anomalies et Frigost 2",c:"#c9bd8f",it:["Grolandais Violent, Tertre du long sommeil, Sphincter Cell, Kimbo, Minotot","Stuff niveau 150, il tient jusqu’au 200","Dès 160–170 : XP en zones sous anomalies (30 à 50 h)","Obsidiantre, Tanière Givrefoux, Korriandre, Kolosso","Bworker : fin de « Le tour du monde en 27 donjons »","Temple du Grand Ougah (4 persos, ta team est parfaite)"]},
+{id:"g",lv:"190–200",t:"Frigost 3 et final",c:"#7a7aa6",it:["Glourséleste : ouvre Frigost 3","4 donjons de Frigost 3 (environ 25 M d’XP)","Donjon du Comte Harebourg","Nowel : Père Fwetar et succès « Glutin de Nowel »","Donjons 190 : Sakaï, Givrefoux, Ombre, Razof, Marteaux-Aigris","Merkator","Kralamoure (48 joueurs) : valide « La tornade des donjons »"]}
+];
+var DF=[["Argenté","40","#8fa3b8"],["Cawotte","60","#e0a02e"],["Dokoko","100","#d9722b"],["Dolmanax","365 jours","#c9a227"],["Émeraude","110","#2ea36b"],["Veilleurs","110","#4aa3a0"],["Domakuro","120","#c4547a"],["Pourpre","130","#9b4bd0"],["Turquoise","160","#19a7c8"],["Ocre","170","#d9962b"],["Ivoire","180","#e3dcc4"],["Ébène","180","#7a7aa6"],["Nébuleux","190","#6f5fd0"]];
+var K="dofus4comptes-v1",S={};
+try{S=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){S={}}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function build(){
+var h="";
+PH.forEach(function(p){
+h+='<details class="phase" id="p-'+p.id+'" style="--c:'+p.c+'"><summary><span class="egg"></span><span><span class="lv">'+p.lv+'</span><br><span class="nm">'+p.t+'</span></span><span class="cnt"></span></summary><ul>';
+p.it.forEach(function(t,i){var k=p.id+i;h+='<li><label><input type="checkbox" data-k="'+k+'"'+(S[k]?" checked":"")+'><span>'+t+'</span></label></li>'});
+h+='</ul></details>';
+});
+document.getElementById("route").innerHTML=h;
+var d="";
+DF.forEach(function(x,i){var k="d"+i;d+='<label class="chip" style="--c:'+x[2]+'"><input type="checkbox" data-k="'+k+'"'+(S[k]?" checked":"")+'><i></i>'+x[0]+' <small>'+x[1]+'</small></label>'});
+document.getElementById("dofus").innerHTML=d;
+}
+function upd(){
+var all=0,done=0;
+PH.forEach(function(p){
+var n=0;p.it.forEach(function(t,i){if(S[p.id+i])n++});
+var el=document.getElementById("p-"+p.id);
+el.style.setProperty("--p",Math.round(n/p.it.length*100)+"%");
+el.querySelector(".cnt").textContent=n+" / "+p.it.length;
+all+=p.it.length;done+=n;
+});
+var pc=Math.round(done/all*100);
+document.getElementById("tot").textContent=pc+" %";
+document.getElementById("totbar").style.width=pc+"%";
+}
+document.addEventListener("change",function(e){
+var k=e.target.getAttribute&&e.target.getAttribute("data-k");
+if(!k)return;
+if(e.target.checked)S[k]=1;else delete S[k];
+save();upd();
+});
+document.getElementById("reset").addEventListener("click",function(){
+if(!confirm("Remettre toute la progression à zéro ?"))return;
+S={};save();build();upd();openFirst();
+});
+function openFirst(){
+for(var i=0;i<PH.length;i++){
+var p=PH[i],n=0;p.it.forEach(function(t,j){if(S[p.id+j])n++});
+if(n<p.it.length){document.getElementById("p-"+p.id).open=true;return}
+}
+}
+build();upd();openFirst();
+var BK=K+"-bk";
+function msg(t){document.getElementById("bkmsg").textContent=t}
+function showBk(){var v=null;try{v=localStorage.getItem(BK)}catch(e){}document.getElementById("bkinfo").textContent=v?"Dernière sauvegarde : "+new Date(v).toLocaleString("fr-FR"):"Aucune sauvegarde pour l’instant."}
+function stamp(){try{localStorage.setItem(BK,new Date().toISOString())}catch(e){}showBk()}
+function payload(){return JSON.stringify({app:"dofus4comptes",v:1,date:new Date().toISOString(),done:Object.keys(S)})}
+function apply(t){var o;try{o=JSON.parse(t)}catch(e){return false}
+if(!o||o.app!=="dofus4comptes"||!Array.isArray(o.done))return false;
+S={};o.done.forEach(function(k){S[k]=1});save();build();upd();openFirst();return true}
+document.getElementById("bkexp").onclick=function(){
+var b=new Blob([payload()],{type:"application/json"}),a=document.createElement("a");
+a.href=URL.createObjectURL(b);a.download="dofus-progression-"+new Date().toISOString().slice(0,10)+".json";
+document.body.appendChild(a);a.click();a.remove();stamp();msg("Fichier exporté.")};
+document.getElementById("bkimp").onclick=function(){document.getElementById("bkfile").click()};
+document.getElementById("bkfile").onchange=function(e){var f=e.target.files[0];if(!f)return;
+var r=new FileReader();r.onload=function(){msg(apply(r.result)?"Progression restaurée.":"Fichier non reconnu.")};r.readAsText(f);e.target.value=""};
+document.getElementById("bkcopy").onclick=function(){
+var c=btoa(unescape(encodeURIComponent(payload())));
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(c).then(function(){stamp();msg("Code copié. Colle-le sur l’autre appareil.")},function(){prompt("Copie ce code :",c)})}
+else{prompt("Copie ce code :",c);stamp()}};
+document.getElementById("bkpaste").onclick=function(){
+var c=prompt("Colle ton code de sauvegarde :");if(!c)return;
+var t;try{t=decodeURIComponent(escape(atob(c.trim())))}catch(e){msg("Code non reconnu.");return}
+msg(apply(t)?"Progression restaurée.":"Code non reconnu.")};
+showBk();
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
+if("serviceWorker" in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+</script>
+</body>
+</html>
