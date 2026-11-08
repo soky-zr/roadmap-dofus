@@ -49,6 +49,9 @@ summary:focus-visible,.chip:focus-within{outline:3px solid var(--bar);outline-of
 label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;cursor:pointer}
 input[type=checkbox]{flex:none;width:20px;height:20px;margin-top:2px;accent-color:var(--c,var(--bar))}
 input:checked+span{color:var(--mute);text-decoration:line-through}
+label small{display:block;color:var(--mute);font-weight:400;font-size:14px;margin-top:2px}
+.goal{padding:10px 0 12px;font-weight:600}
+.phase li.goal{border-top:0}
 h2.sec{font-size:22px;margin:30px 0 4px}
 .hint{color:var(--mute);margin:0 0 12px;font-size:14px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -115,23 +118,83 @@ button{font:inherit;margin-top:28px;background:none;border:1px solid var(--line)
 
 <script>
 var PH=[
-{id:"a",lv:"1–20",t:"Les Pious et le Kardorim",c:"#8fa3b8",it:["Tutoriel sur les 4 comptes (niveau 2 et trousseau)","Passage direct à Astrub, sans Incarnam","Panoplie Piou (équipable niveau 12)","Donjon Crypte du Kardorim, tous les succès (niveau 20)"]},
-{id:"b",lv:"20–50",t:"Tour du monde, début",c:"#2ea36b",it:["Quêtes « Un citoyen modèle » (prérequis des Dofus)","Tournesol Affamé, Château Ensablé, Bouftou","Squelettes, Tofus, Maison Fantôme","Baguette Rikiki au niveau 40, puis Kankreblath","Scarafeuilles, Forgerons, Akadémie des Gobs, Bworks","« Destination aventure » (Kwakwa, Kanniboul)","Dofus Argenté (quêtes d’Astrub, niveau 40)","Panoplie Blop et familier Pioute"]},
-{id:"c",lv:"50–90",t:"Dofus Cawotte",c:"#e0a02e",it:["Larves (2 persos minimum) et Nid du Kwakwa","Accès à Otomaï, puis Grotte Hesque","Clos des Blops, avec sauvegarde au Blop Multicolore","Île de Moon et Village Kanniboul","Panoplie du Wa Wabbit (une seule pour les 4)","Terrier du Wa Wabbit : Dofus Cawotte sur chaque perso","Gelax, Draegnerys, Pitons, Arche d’Otomaï, Brumen","Cimetière des Mastodontes (Saharach)","Avis de recherche dès le niveau 60"]},
-{id:"d",lv:"90–110",t:"La tranche difficile",c:"#9b4bd0",it:["Chouque, Riktus, Reine Nyée, Domaine Ancestral, Dragon Cochon, Kharnozor","Koulosse, Dramak, Moon, Meulou (sans les succès du Meulou)","Dokoko au niveau 100","Trophées Remueur (+1 PA) et Nomade (+1 PM)","Rat Blanc, Rasboul, Rat Noir, Maître Corbac (niveau 110)","Lancer les quêtes des Dofus Pourpre et Émeraude"]},
-{id:"e",lv:"110–150",t:"Frigost et Pandala",c:"#19a7c8",it:["Serre du Royalmouth (Frigost)","Minotoror, avec sauvegarde devant le Minotot","Blop Multicolore Royal et ses 4 succès","Pandala 1 : Damadrya, Tanukouï San, Dame des Eaux, Foux d’artifices, Dojo du Vent","Tofulailler, Crocabulia, Skeunk (Dofus Kaliptus)","Tynril : il faut taper dans les 4 éléments","Mansot Royal, El Piko, Haute Truche, Chêne Mou","Améliorer le stuff vers 120–140"]},
-{id:"f",lv:"150–190",t:"Anomalies et Frigost 2",c:"#c9bd8f",it:["Grolandais Violent, Tertre du long sommeil, Sphincter Cell, Kimbo, Minotot","Stuff niveau 150, il tient jusqu’au 200","Dès 160–170 : XP en zones sous anomalies (30 à 50 h)","Obsidiantre, Tanière Givrefoux, Korriandre, Kolosso","Bworker : fin de « Le tour du monde en 27 donjons »","Temple du Grand Ougah (4 persos, ta team est parfaite)"]},
-{id:"g",lv:"190–200",t:"Frigost 3 et final",c:"#7a7aa6",it:["Glourséleste : ouvre Frigost 3","4 donjons de Frigost 3 (environ 25 M d’XP)","Donjon du Comte Harebourg","Nowel : Père Fwetar et succès « Glutin de Nowel »","Donjons 190 : Sakaï, Givrefoux, Ombre, Razof, Marteaux-Aigris","Merkator","Kralamoure (48 joueurs) : valide « La tornade des donjons »"]}
+{id:"a",lv:"1–20",t:"Astrub et Kardorim",c:"#8fa3b8",g:"Équiper la panoplie Piou et passer niveau 20.",it:[
+["Tutoriel sur les 4 comptes","Va jusqu’au bout : niveau 2 et trousseau de clefs offerts (entrée gratuite dans les donjons une fois par semaine)."],
+["Direction Astrub","Portail en [4,-3], inutile de rester à Incarnam. Mémorise le zaap d’Astrub."],
+["Panoplie Piou","Farme les Pious de la couleur de ton élément jusqu’à la panoplie complète (équipable niveau 12)."],
+["Almanax, chaque jour","Offrande sur les 4 comptes. 365 jours donnent le Dofus Dolmanax."],
+["Donjon Crypte du Kardorim","Fais tous les succès : tu passes niveau 20."]]},
+{id:"b",lv:"20–50",t:"Tour du monde",c:"#2ea36b",g:"Lancer le Tour du monde et enchaîner les premiers donjons.",it:[
+["Quêtes « Un citoyen modèle »","Envoyée des Douzes [6,-19]. À finir : prérequis de toutes les quêtes de Dofus."],
+["Lancer le Tour du monde","Metag Robill [7,-24] : quête « Le tour du monde ». Prends aussi Bart Cousti [11,-24] et Vaiguy [5,-22]."],
+["Grange du Tournesol et Château Ensablé","Donjon des champs [7,-24], puis Château Ensablé [13,-28]. Rends les quêtes à la Taverne d’Astrub [6,-18]."],
+["Bouftou Royal [2,-34]","Rapporte de la Laine de Bouftou pour le familier Chacha (Jeffrey Baratourte [2,-31])."],
+["Squelettes, puis Tofus","Quête du Maître des clefs [-6,-37]. Squelettes [10,15] par le temple Roublard, Tofus [5,6]."],
+["Baguette Rikiki (niveau 40)","Fais-la fabriquer par un sculpteur : une seule téléporte les 4 persos au Kankreblath (maison de Kérubim [3,-17], à l’étage)."],
+["Maison Fantôme, Scarafeuilles, Forgerons","Foire du Trool [-13,-41] ; Scarafeuilles [1,26] (Icar Mélite [0,24]) ; Forgerons [13,21] (Commandant Costaud [17,28])."],
+["Amakna : Akadémie des Gobs et Bworks","Hanniboul Smisse [-1,2] pour « Destination aventure ». Akadémie [-5,3] (parchemin dans l’armoire), Bworks [-5,10]."],
+["Dofus Argenté (optionnel)","Quêtes d’Astrub, vers le niveau 40."],
+["Panoplie Blop","Vers 50 : Lacs et Massif de Cania, complétée par du Kwak (ou Abracaska pour 8 PA)."]]},
+{id:"c",lv:"50–90",t:"Dofus Cawotte",c:"#e0a02e",g:"Obtenir le Dofus Cawotte (+60 Sagesse) sur les 4 persos.",it:[
+["Larves et Nid du Kwakwa","Larves : 2 persos minimum, clef de Pat Akess, entrée [-2,-5]. Nid du Kwakwa [-4,-7] : succès du monstre primordial (beaucoup d’XP)."],
+["Accès à Otomaï","Quêtes « Le nouveau monde » puis « L’île des naufragés » (Capitaine Kradoc, Sufokia [15,28]). Zaap Otomaï [-46,18]."],
+["Grotte Hesque et Refuge Sylvestre","Grotte Hesque [-59,15], sans les succès. Refuge Sylvestre [40,-84] (bateau [10,-3], 100 kamas, zaap Albuera [39,-82])."],
+["Avis de recherche dès le niveau 60","Milices d’Astrub [5,-19], Amakna [5,-6] et Base des Justiciers [4,4]. Fais-les tôt le matin ou tard le soir."],
+["Clos des Blops [-7,-43]","À la fin, utilise le trousseau pour te sauver devant le Blop Multicolore Royal."],
+["Île de Moon et Village Kanniboul","Quête « Partir un jour sans retour » (ticket 1 000 kamas en [11,10]). Zaap [35,12], donjon [29,9]."],
+["Quêtes du Dofus Cawotte","« Le réveil de Pandala », « Mais où sont les Dofus ? » jusqu’à « Un sage parmi les sages », « Intrusion chez les Wabbits » (4 Ailes de Scarafeuille), « Jamais deux sans trois », puis Château du Wa Wabbit."],
+["Panoplie du Wa Wabbit","Cape et couronne (tailleur 60), bâton (sculpteur 60). Une seule panoplie pour les 4 : passe-la de perso en perso."],
+["Terrier du Wa Wabbit [28,-12]","Bats le Wa Wobot avec la panoplie, parle au Gawdien du Dofus. À refaire pour chaque perso."],
+["Ne fabrique pas le Gelano","Trop long à faire ×4. Fais seulement le donjon Gelax (quête d’Alain Deix [13,25])."],
+["Donjons du Tour du monde","Draegnerys [-4,29], Pitons Rocheux [-3,-7], Arche d’Otomaï [-55,-4] (quiz du Gardien du pont [-56,0]), Brumen Tinctorias [-27,17], Mastodontes [19,-61] (bateau [12,-6])."],
+["Chevalier Noir et Rose [-58,-5]","Combat difficile. La quête ne se met pas à jour sur tous les persos : refais-le si besoin."],
+["Stuff vers le niveau 80","Ceinture Fulgurante, Anneau et Amulette du Blop Royal."]]},
+{id:"d",lv:"90–110",t:"La tranche difficile",c:"#9b4bd0",g:"Passer les 4 gros donjons et débloquer le Dokoko.",it:[
+["Donjons abordables","Chouque [33,3], Magik Riktus [-22,12], Reine Nyée [-6,-15], Domaine Ancestral [-9,-14], Dragon Cochon [-1,33], Kharnozor [-3,25]."],
+["Niveau 100 : trophées","Remueur (+1 PA) et Nomade (+1 PM). Maximum 3 items de la panoplie du Dragon Cochon."],
+["Les 4 donjons difficiles","Koulosse [-17,8], Dramak [21,7], Arbre de Moon [29,6], Meulou [-23,0]. Au Meulou, passe sans les succès, avec compagnons si besoin."],
+["Dofus Dokoko","Succès « Koko Boy », puis « Rendez-vous avec la lune » (donjon Moon)."],
+["Donjons du niveau 110","Rat Blanc [-36,-60], Rasboul [-51,9], Rat Noir [-29,35], Maître Corbac [-15,-62] (heures creuses)."],
+["Lancer le Dofus Pourpre","Quête « Le livre des Taures » (Mériana [-6,-3]). Il faudra 15 000 roses des sables : une chasse au trésor par jour dès maintenant."],
+["Dofus Émeraude (optionnel)","Via la Fabrique de Malléfisk (dimension Enutrosor)."]]},
+{id:"e",lv:"110–150",t:"Frigost et Pandala",c:"#19a7c8",g:"Finir Pandala 1 et Frigost, récupérer le Kaliptus.",it:[
+["Royalmouth (Frigost)","Bateau [-34,-16] (Capitaine Ardier), zaap [-78,-41], donjon [-84,-49]."],
+["Minotoror","Bateau [-36,-10], labyrinthe [-42,-17]. Avance la quête du Pourpre, puis trousseau pour te sauver devant le Minotot."],
+["Blop Multicolore Royal [-7,-43]","Fais les succès possibles à 4. Ceux de duo se feront plus tard avec 2 comptes."],
+["Pandala 1","Damadrya [26,-30], Tanukouï San [26,-24], Dame des Eaux [22,-24], Foux d’artifices [14,-32], Dojo du Vent [20,-37]."],
+["Tofulailler Royal et Crocabulia","Tofulailler [5,6], Sanctuaire des Dragoeufs [-2,25]."],
+["Skeunk : Dofus Kaliptus","Repaire [-20,10]. De la prospection aide pour le drop."],
+["Laboratoire du Tynril [-53,20]","Il faut taper dans les 4 éléments. Prépare tes éléments avant, ou prends un compagnon."],
+["Saharach et Frigost","El Piko [15,-65], Haute Truche [-10,-44], Chêne Mou [-14,-13], Mansot Royal [-64,-55]."],
+["Stuff 120–140","Items niveau 120 à 140, parchemins de caractéristiques (Sagesse, puis élément principal)."]]},
+{id:"f",lv:"150–190",t:"Anomalies et Frigost 2",c:"#c9bd8f",g:"Monter en XP via les anomalies et finir le Tour du monde.",it:[
+["Épave du Grolandais Violent [-60,-84]","Transporteur [-68,-34]."],
+["Tertre du long sommeil et Sphincter Cell","Tertre [-3,19] (entrée [-5,13]). Sphincter Cell [5,-8] est dur à 150 : prends des niveaux d’abord."],
+["Minotot et Kimbo","Reprends ta sauvegarde auprès de Lorkos. Kimbo via [-49,14]."],
+["Stuff niveau 150","Il tient jusqu’au 200. Trophées accessibles (Dévastateur, Vigoureux) en attendant les Majeur."],
+["Anomalies dès 160–170","Zones à 120 % de bonus. Compte 30 à 50 h jusqu’au 200 : l’XP explose après 180."],
+["Dofus Turquoise (160) et Ocre (170)","Lance les quêtes pendant que tu farmes les anomalies."],
+["Frigost 2","Obsidiantre [-71,-83], Givrefoux [-76,-75], Korriandre [-73,-69], Kolosso [-61,-69]."],
+["Bworker [-15,14] (niveau 180)","Termine « Le tour du monde en 27 donjons » chez Metag Robill, puis le Maître des clefs."],
+["Temple du Grand Ougah [-9,29]","Il faut 4 persos : ta team est parfaite pour ça."]]},
+{id:"g",lv:"190–200",t:"Frigost 3 et final",c:"#7a7aa6",g:"Finir Frigost 3 et préparer le Kralamoure.",it:[
+["Glourséleste","Antichambre des Gloursons [-63,-75] : ouvre Frigost 3."],
+["Frigost 3","Transporteur [-53,-84], Klime [-63,-86], Missiz Frizz [-70,-81], Nileza [-61,-74]. La quête « Il faut mettre un terme aux maîtres » donne environ 25 M d’XP."],
+["Comte Harebourg","Tour de la Clepsydre [-61,-79], avis « On recherche le Comte Harebourg »."],
+["Nowel (en saison)","Père Fwetar [-34,-89] et succès « Glutin de Nowel » : plusieurs millions d’XP."],
+["Donjons niveau 190","Sakaï [-52,-45], Cavernes Nourricières [-80,-75], Pyramide d’Ombre [6,13], Razof [-68,30], Marteaux-Aigris [32,-64]."],
+["Merkator","Quête « Tour nage » (Capitaine Grog [22,22], 12 Piles Steamers minimum)."],
+["Kralamoure [-60,-8]","Événement à 48 joueurs : prépare une guilde. Valide « La tornade des donjons »."]]}
 ];
 var DF=[["Argenté","40","#8fa3b8"],["Cawotte","60","#e0a02e"],["Dokoko","100","#d9722b"],["Dolmanax","365 jours","#c9a227"],["Émeraude","110","#2ea36b"],["Veilleurs","110","#4aa3a0"],["Domakuro","120","#c4547a"],["Pourpre","130","#9b4bd0"],["Turquoise","160","#19a7c8"],["Ocre","170","#d9962b"],["Ivoire","180","#e3dcc4"],["Ébène","180","#7a7aa6"],["Nébuleux","190","#6f5fd0"]];
-var K="dofus4comptes-v1",S={};
+var K="dofus4comptes-v2",S={};
 try{S=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){S={}}
 function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
 function build(){
 var h="";
 PH.forEach(function(p){
-h+='<details class="phase" id="p-'+p.id+'" style="--c:'+p.c+'"><summary><span class="egg"></span><span><span class="lv">'+p.lv+'</span><br><span class="nm">'+p.t+'</span></span><span class="cnt"></span></summary><ul>';
-p.it.forEach(function(t,i){var k=p.id+i;h+='<li><label><input type="checkbox" data-k="'+k+'"'+(S[k]?" checked":"")+'><span>'+t+'</span></label></li>'});
+h+='<details class="phase" id="p-'+p.id+'" style="--c:'+p.c+'"><summary><span class="egg"></span><span><span class="lv">'+p.lv+'</span><br><span class="nm">'+p.t+'</span></span><span class="cnt"></span></summary><ul><li class="goal">Objectif : '+p.g+'</li>';
+p.it.forEach(function(t,i){var k=p.id+i;h+='<li><label><input type="checkbox" data-k="'+k+'"'+(S[k]?" checked":"")+'><span><b>'+t[0]+'</b><small>'+t[1]+'</small></span></label></li>'});
 h+='</ul></details>';
 });
 document.getElementById("route").innerHTML=h;
